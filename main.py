@@ -1,16 +1,13 @@
 import gi
 
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk
 
+from buttons import *
+from calculations import do_math
 
 class GridWindow(Gtk.Window):
     def __init__(self):
-
         super().__init__(title="GTK calculator")
-
-        index = 0
-        grid = Gtk.Grid()
 
         self.entry = Gtk.Entry()
         self.entry.set_text("")
@@ -18,7 +15,7 @@ class GridWindow(Gtk.Window):
         # Get text from Entry:
         # a = self.entry.props.text
 
-
+        index = 0
         while index < 10:
             button = Gtk.Button(label=f"{index + 1}")
             if index < 3:
@@ -29,25 +26,6 @@ class GridWindow(Gtk.Window):
                 grid.attach(button, index-6, 3, 1, 1)
             button.connect("clicked", self.clicked_button, index)
             index += 1
-
-
-        button_dot = Gtk.Button(label=".")
-        button0 = Gtk.Button(label="0")
-        button_eq = Gtk.Button(label="=")
-        grid.attach(button_dot, 0, 4, 1, 1)
-        grid.attach(button0, 1, 4, 1, 1)
-        grid.attach(button_eq, 2, 4, 1, 1)
-
-        button_c = Gtk.Button(label="C")
-        button_plus = Gtk.Button(label="+")
-        button_minus = Gtk.Button(label="-")
-        button_mult = Gtk.Button(label="×")
-        button_div = Gtk.Button(label="÷")
-        grid.attach(button_c, 4, 0, 1, 1)
-        grid.attach(button_plus, 4, 1, 1, 1)
-        grid.attach(button_minus, 4, 2, 1, 1)
-        grid.attach(button_mult, 4, 3, 1, 1)
-        grid.attach(button_div, 4, 4, 1, 1)
 
         button_dot.connect("clicked", self.clicked_dot)
         button0.connect("clicked", self.clicked_0)
@@ -73,7 +51,10 @@ class GridWindow(Gtk.Window):
         self.entry.set_text(add_text)
 
     def clicked_eq(self, entry):
-        add_text = self.entry.props.text + "="
+        content = self.entry.props.text
+        answer = do_math(content)
+        self.entry.set_text("")
+        add_text = self.entry.props.text + answer
         self.entry.set_text(add_text)
 
     def clicked_c(self, entry):
