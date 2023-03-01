@@ -1,5 +1,6 @@
 # calculator_gtk_2
-This version is written on Python
+This a Python version. Here is a [Rust version](https://github.com/antonovmike/calculator_gtk)
+
 ![python_gtk](https://github.com/antonovmike/calculator_gtk_2/blob/main/Screenshot.png)
 
 
