@@ -1,5 +1,6 @@
 # calculator_gtk_2
-![python_gtk](https://github.com/antonovmike/gtk_python/blob/test/Screenshot.png)
+![python_gtk](https://github.com/antonovmike/calculator_gtk_2/blob/main/Screenshot.png)
+
 
 ```bash
 python -m pip install --upgrade pip
