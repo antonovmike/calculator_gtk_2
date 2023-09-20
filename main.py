@@ -35,12 +35,12 @@ class GridWindow(Gtk.Window):
         button_functions = {
             "dot": self.clicked_dot,
             "0": self.clicked_0,
-            "eq": self.clicked_eq,
-            "c": self.clicked_c,
             "plus": self.clicked_plus,
             "minus": self.clicked_minus,
             "mult": self.clicked_mult,
-            "div": self.clicked_div
+            "div": self.clicked_div,
+            "eq": self.clicked_eq,
+            "c": self.clicked_c,
         }
 
         for button_name, function in button_functions.items():

@@ -12,10 +12,10 @@ def create_button(grid, label, pos_x, pos_y):
 buttons = {
     "dot": create_button(grid, ".", 0, 4),
     "0": create_button(grid, "0", 1, 4),
-    "eq": create_button(grid, "=", 2, 4),
-    "c": create_button(grid, "C", 4, 0),
     "plus": create_button(grid, "+", 4, 1),
     "minus": create_button(grid, "-", 4, 2),
     "mult": create_button(grid, "×", 4, 3),
-    "div": create_button(grid, "÷", 4, 4)
+    "div": create_button(grid, "÷", 4, 4),
+    "eq": create_button(grid, "=", 2, 4),
+    "c": create_button(grid, "C", 4, 0),
 }
