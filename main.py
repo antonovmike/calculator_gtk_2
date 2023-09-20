@@ -5,6 +5,10 @@ from buttons import buttons, Gtk, grid
 from calculations import do_math
 
 
+def update_entry(self, new_text):
+    current_text = self.entry.props.text
+    self.entry.set_text(current_text + new_text)
+
 
 class GridWindow(Gtk.Window):
     def __init__(self):
@@ -40,42 +44,35 @@ class GridWindow(Gtk.Window):
         self.add(grid)
 
     def clicked_button(self, entry, number):
-        add_text = self.entry.props.text + str(number + 1)
-        return self.entry.set_text(add_text)
+        return update_entry(self, str(number + 1))
 
     def clicked_dot(self, entry):
-        add_text = self.entry.props.text + "."
-        self.entry.set_text(add_text)
+        return update_entry(self, ".")
 
     def clicked_0(self, entry):
-        add_text = self.entry.props.text + "0"
-        self.entry.set_text(add_text)
+        return update_entry(self, "0")
 
     def clicked_eq(self, entry):
         content = self.entry.props.text
         answer = do_math(content)
         self.entry.set_text("")
         add_text = self.entry.props.text + answer
-        self.entry.set_text(add_text)
+        return update_entry(self, str(add_text))
 
     def clicked_c(self, entry):
         self.entry.set_text("")
 
     def clicked_plus(self, entry):
-        add_text = self.entry.props.text + "+"
-        self.entry.set_text(add_text)
+        return update_entry(self, "+")
 
     def clicked_minus(self, entry):
-        add_text = self.entry.props.text + "-"
-        self.entry.set_text(add_text)
+        return update_entry(self, "-")
 
     def clicked_mult(self, entry):
-        add_text = self.entry.props.text + "x"
-        self.entry.set_text(add_text)
+        return update_entry(self, "x")
 
     def clicked_div(self, entry):
-        add_text = self.entry.props.text + "/"
-        self.entry.set_text(add_text)
+        return update_entry(self, "/")
 
 
 win = GridWindow()
