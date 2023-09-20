@@ -1,7 +1,7 @@
 import gi
 gi.require_version("Gtk", "3.0")
 
-from buttons import *
+from buttons import buttons, Gtk, grid
 from calculations import do_math
 
 
@@ -28,14 +28,14 @@ class GridWindow(Gtk.Window):
             button.connect("clicked", self.clicked_button, index)
             index += 1
 
-        button_dot.connect("clicked", self.clicked_dot)
-        button0.connect("clicked", self.clicked_0)
-        button_eq.connect("clicked", self.clicked_eq)
-        button_c.connect("clicked", self.clicked_c)
-        button_plus.connect("clicked", self.clicked_plus)
-        button_minus.connect("clicked", self.clicked_minus)
-        button_mult.connect("clicked", self.clicked_mult)
-        button_div.connect("clicked", self.clicked_div)
+        buttons["dot"].connect("clicked", self.clicked_dot)
+        buttons["0"].connect("clicked", self.clicked_0)
+        buttons["eq"].connect("clicked", self.clicked_eq)
+        buttons["c"].connect("clicked", self.clicked_c)
+        buttons["plus"].connect("clicked", self.clicked_plus)
+        buttons["minus"].connect("clicked", self.clicked_minus)
+        buttons["mult"].connect("clicked", self.clicked_mult)
+        buttons["div"].connect("clicked", self.clicked_div)
 
         self.add(grid)
 

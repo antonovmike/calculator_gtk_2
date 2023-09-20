@@ -1,6 +1,4 @@
 def do_math(content):
-    print(content)
-
     operations = {
         '+': float.__add__,
         '-': float.__sub__,
