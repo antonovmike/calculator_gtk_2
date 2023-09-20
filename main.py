@@ -37,19 +37,8 @@ class GridWindow(Gtk.Window):
             grid.attach(button, x, y, 1, 1)
             button.connect("clicked", self.clicked_button, label)
 
-        button_functions = {
-            "0": self.clicked_button,
-            "dot": self.clicked_button,
-            "plus": self.clicked_button,
-            "minus": self.clicked_button,
-            "mult": self.clicked_button,
-            "div": self.clicked_button,
-            "eq": self.clicked_button,
-            "c": self.clicked_button,
-        }
-
-        for button_name, function in button_functions.items():
-            buttons[button_name].connect("clicked", function, button_name)
+        for button in buttons:
+            buttons[button].connect("clicked", self.clicked_button, button)
 
         self.add(grid)
 
