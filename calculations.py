@@ -12,6 +12,7 @@ def do_math(content):
         if operation in content:
             parts = content.split(operation)
             result = function(float(parts[0]), float(parts[1]))
+            result = round(result, 2)
             return f"{parts[0]} {operation} {parts[1]} = {result}"
 
     print("Operand not found")
