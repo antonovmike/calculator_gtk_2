@@ -38,18 +38,18 @@ class GridWindow(Gtk.Window):
                 grid.attach(button, index - 3, 2, 1, 1)
             elif 5 < index < 9:
                 grid.attach(button, index - 6, 3, 1, 1)
-            button.connect("clicked", self.clicked_num_button, index + 1)
+            button.connect("clicked", self.clicked_button, str(index + 1))
             index += 1
 
         button_functions = {
-            "0": self.clicked_not_num,
-            "dot": self.clicked_not_num,
-            "plus": self.clicked_not_num,
-            "minus": self.clicked_not_num,
-            "mult": self.clicked_not_num,
-            "div": self.clicked_not_num,
-            "eq": self.clicked_not_num,
-            "c": self.clicked_not_num,
+            "0": self.clicked_button,
+            "dot": self.clicked_button,
+            "plus": self.clicked_button,
+            "minus": self.clicked_button,
+            "mult": self.clicked_button,
+            "div": self.clicked_button,
+            "eq": self.clicked_button,
+            "c": self.clicked_button,
         }
 
         for button_name, function in button_functions.items():
@@ -57,11 +57,10 @@ class GridWindow(Gtk.Window):
 
         self.add(grid)
 
-    def clicked_num_button(self, entry, number):
-        return update_entry(self, str(number))
-
-    def clicked_not_num(self, entry, name):
-        if name in symbols:
+    def clicked_button(self, button, name):
+        if name.isdigit():
+            return update_entry(self, name)
+        elif name in symbols:
             return update_entry(self, symbols[name])
         elif name == "c":
             self.entry.set_text("")
