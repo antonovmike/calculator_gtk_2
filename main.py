@@ -19,8 +19,6 @@ symbols = {
 def update_entry(self, new_text):
     current_text = self.entry.props.text
     self.entry.set_text(current_text + new_text)
-    # Get text from Entry:
-    # a = self.entry.props.text
 
 
 class GridWindow(Gtk.Window):
@@ -50,8 +48,8 @@ class GridWindow(Gtk.Window):
             "minus": self.clicked_not_num,
             "mult": self.clicked_not_num,
             "div": self.clicked_not_num,
-            "eq": self.clicked_eq,
-            "c": self.clicked_c,
+            "eq": self.clicked_not_num,
+            "c": self.clicked_not_num,
         }
 
         for button_name, function in button_functions.items():
@@ -65,16 +63,14 @@ class GridWindow(Gtk.Window):
     def clicked_not_num(self, entry, name):
         if name in symbols:
             return update_entry(self, symbols[name])
-
-    def clicked_eq(self, entry, useless):
-        content = self.entry.props.text
-        answer = do_math(content)
-        self.entry.set_text("")
-        add_text = self.entry.props.text + answer
-        return update_entry(self, str(add_text))
-
-    def clicked_c(self, entry, useless):
-        self.entry.set_text("")
+        elif name == "c":
+            self.entry.set_text("")
+        elif name == "eq":
+            content = self.entry.props.text
+            answer = do_math(content)
+            self.entry.set_text("")
+            add_text = self.entry.props.text + answer
+            return update_entry(self, str(add_text))
 
 
 if __name__ == "__main__":
