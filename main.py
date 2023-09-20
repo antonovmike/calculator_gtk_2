@@ -57,16 +57,6 @@ class GridWindow(Gtk.Window):
     def clicked_0(self, entry):
         return update_entry(self, "0")
 
-    def clicked_eq(self, entry):
-        content = self.entry.props.text
-        answer = do_math(content)
-        self.entry.set_text("")
-        add_text = self.entry.props.text + answer
-        return update_entry(self, str(add_text))
-
-    def clicked_c(self, entry):
-        self.entry.set_text("")
-
     def clicked_plus(self, entry):
         return update_entry(self, "+")
 
@@ -78,6 +68,16 @@ class GridWindow(Gtk.Window):
 
     def clicked_div(self, entry):
         return update_entry(self, "/")
+
+    def clicked_eq(self, entry):
+        content = self.entry.props.text
+        answer = do_math(content)
+        self.entry.set_text("")
+        add_text = self.entry.props.text + answer
+        return update_entry(self, str(add_text))
+
+    def clicked_c(self, entry):
+        self.entry.set_text("")
 
 
 if __name__ == "__main__":
