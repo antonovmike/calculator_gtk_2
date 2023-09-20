@@ -1,9 +1,10 @@
 import gi
-
 gi.require_version("Gtk", "3.0")
 
 from buttons import *
 from calculations import do_math
+
+
 
 class GridWindow(Gtk.Window):
     def __init__(self):
@@ -21,9 +22,9 @@ class GridWindow(Gtk.Window):
             if index < 3:
                 grid.attach(button, index, 1, 1, 1)
             elif 2 < index < 6:
-                grid.attach(button, index-3, 2, 1, 1)
+                grid.attach(button, index - 3, 2, 1, 1)
             elif 5 < index < 9:
-                grid.attach(button, index-6, 3, 1, 1)
+                grid.attach(button, index - 6, 3, 1, 1)
             button.connect("clicked", self.clicked_button, index)
             index += 1
 
@@ -39,7 +40,7 @@ class GridWindow(Gtk.Window):
         self.add(grid)
 
     def clicked_button(self, entry, number):
-        add_text = self.entry.props.text + str(number+1)
+        add_text = self.entry.props.text + str(number + 1)
         return self.entry.set_text(add_text)
 
     def clicked_dot(self, entry):
