@@ -29,17 +29,13 @@ class GridWindow(Gtk.Window):
         self.entry.set_text("")
         grid.attach(self.entry, 0, 0, 3, 1)
 
-        index = 0
-        while index < 10:
-            button = Gtk.Button(label=f"{index + 1}")
-            if index < 3:
-                grid.attach(button, index, 1, 1, 1)
-            elif 2 < index < 6:
-                grid.attach(button, index - 3, 2, 1, 1)
-            elif 5 < index < 9:
-                grid.attach(button, index - 6, 3, 1, 1)
-            button.connect("clicked", self.clicked_button, str(index + 1))
-            index += 1
+        button_labels = [str(i) for i in range(1, 10)]
+        button_positions = [(i % 3, i // 3 + 1) for i in range(9)]
+
+        for label, (x, y) in zip(button_labels, button_positions):
+            button = Gtk.Button(label=label)
+            grid.attach(button, x, y, 1, 1)
+            button.connect("clicked", self.clicked_button, label)
 
         button_functions = {
             "0": self.clicked_button,
