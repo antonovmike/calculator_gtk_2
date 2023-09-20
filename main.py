@@ -75,7 +75,8 @@ class GridWindow(Gtk.Window):
         return update_entry(self, "/")
 
 
-win = GridWindow()
-win.connect("destroy", Gtk.main_quit)
-win.show_all()
-Gtk.main()
+if __name__ == "__main__":
+    win = GridWindow()
+    win.connect("destroy", Gtk.main_quit)
+    win.show_all()
+    Gtk.main()
