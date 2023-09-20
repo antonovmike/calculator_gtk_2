@@ -1,8 +1,19 @@
 import gi
+
 gi.require_version("Gtk", "3.0")
 
 from buttons import buttons, Gtk, grid
 from calculations import do_math
+
+
+symbols = {
+    "0": "0",
+    "dot": ".",
+    "plus": "+",
+    "minus": "-",
+    "mult": "x",
+    "div": "/",
+}
 
 
 def update_entry(self, new_text):
@@ -33,50 +44,36 @@ class GridWindow(Gtk.Window):
             index += 1
 
         button_functions = {
-            "dot": self.clicked_dot,
-            "0": self.clicked_0,
-            "plus": self.clicked_plus,
-            "minus": self.clicked_minus,
-            "mult": self.clicked_mult,
-            "div": self.clicked_div,
+            "0": self.clicked_not_num,
+            "dot": self.clicked_not_num,
+            "plus": self.clicked_not_num,
+            "minus": self.clicked_not_num,
+            "mult": self.clicked_not_num,
+            "div": self.clicked_not_num,
             "eq": self.clicked_eq,
             "c": self.clicked_c,
         }
 
         for button_name, function in button_functions.items():
-            buttons[button_name].connect("clicked", function)
+            buttons[button_name].connect("clicked", function, button_name)
 
         self.add(grid)
 
     def clicked_num_button(self, entry, number):
         return update_entry(self, str(number))
 
-    def clicked_dot(self, entry):
-        return update_entry(self, ".")
+    def clicked_not_num(self, entry, name):
+        if name in symbols:
+            return update_entry(self, symbols[name])
 
-    def clicked_0(self, entry):
-        return update_entry(self, "0")
-
-    def clicked_plus(self, entry):
-        return update_entry(self, "+")
-
-    def clicked_minus(self, entry):
-        return update_entry(self, "-")
-
-    def clicked_mult(self, entry):
-        return update_entry(self, "x")
-
-    def clicked_div(self, entry):
-        return update_entry(self, "/")
-
-    def clicked_eq(self, entry):
+    def clicked_eq(self, entry, useless):
         content = self.entry.props.text
         answer = do_math(content)
         self.entry.set_text("")
         add_text = self.entry.props.text + answer
         return update_entry(self, str(add_text))
 
-    def clicked_c(self, entry):
+    def clicked_c(self, entry, useless):
         self.entry.set_text("")
 
 
