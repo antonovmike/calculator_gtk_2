@@ -8,6 +8,8 @@ from calculations import do_math
 def update_entry(self, new_text):
     current_text = self.entry.props.text
     self.entry.set_text(current_text + new_text)
+    # Get text from Entry:
+    # a = self.entry.props.text
 
 
 class GridWindow(Gtk.Window):
@@ -17,8 +19,6 @@ class GridWindow(Gtk.Window):
         self.entry = Gtk.Entry()
         self.entry.set_text("")
         grid.attach(self.entry, 0, 0, 3, 1)
-        # Get text from Entry:
-        # a = self.entry.props.text
 
         index = 0
         while index < 10:
@@ -29,7 +29,7 @@ class GridWindow(Gtk.Window):
                 grid.attach(button, index - 3, 2, 1, 1)
             elif 5 < index < 9:
                 grid.attach(button, index - 6, 3, 1, 1)
-            button.connect("clicked", self.clicked_button, index)
+            button.connect("clicked", self.clicked_num_button, index + 1)
             index += 1
 
         button_functions = {
@@ -48,8 +48,8 @@ class GridWindow(Gtk.Window):
 
         self.add(grid)
 
-    def clicked_button(self, entry, number):
-        return update_entry(self, str(number + 1))
+    def clicked_num_button(self, entry, number):
+        return update_entry(self, str(number))
 
     def clicked_dot(self, entry):
         return update_entry(self, ".")
